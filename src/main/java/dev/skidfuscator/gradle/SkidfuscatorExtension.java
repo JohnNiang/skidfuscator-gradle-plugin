@@ -19,6 +19,7 @@ public class SkidfuscatorExtension {
     private final ListProperty<String> excludes;
     private final RegularFileProperty runtime;
     private final RegularFileProperty exemptionFile;
+    private final RegularFileProperty config;
 
     @Inject
     public SkidfuscatorExtension(ObjectFactory objectFactory) {
@@ -30,6 +31,7 @@ public class SkidfuscatorExtension {
         this.classifier = objectFactory.property(String.class).convention("-obfuscated");
         this.excludes = objectFactory.listProperty(String.class).empty();
         this.exemptionFile = objectFactory.fileProperty();
+        this.config = objectFactory.fileProperty();
     }
 
     public void exclude(String... exludes) {

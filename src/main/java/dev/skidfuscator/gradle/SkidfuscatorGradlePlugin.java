@@ -61,10 +61,17 @@ public class SkidfuscatorGradlePlugin implements Plugin<Project> {
                 exemption = null;
             }
 
+            File config = null;
+            if (extension.getConfig().isPresent()){
+                config = extension.getConfig().getAsFile().get();
+            }
+
             File input = jar.getArchiveFile().get().getAsFile();
             File directory = input.getParentFile();
 
-            File output = new File(directory, FilenameUtils.getName(input.getName()) + extension.getClassifier().get() + FilenameUtils.getExtension(input.getName()));
+            File output = new File(directory, FilenameUtils.getBaseName(input.getName())
+                                              + extension.getClassifier().get()
+                                              + '.' +FilenameUtils.getExtension(input.getName()));
             SkidfuscatorSpec spec = SkidfuscatorSpec.builder()
                     .input(input)
                     .output(output)
@@ -73,6 +80,7 @@ public class SkidfuscatorGradlePlugin implements Plugin<Project> {
                     .analytics(!extension.getNotrack().get())
                     .runtime(javaRuntime)
                     .exempt(exemption)
+                    .config(config)
                     .jmod(this.jvm > 8)
                     .libs(this.classpath.toArray(new File[0]))
                     .excludes(extension.getExcludes().getOrNull())

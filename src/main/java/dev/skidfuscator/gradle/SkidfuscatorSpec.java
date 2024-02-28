@@ -15,6 +15,7 @@ public class SkidfuscatorSpec {
     private File mappings;
     private File exempt;
     private File runtime;
+    private File config;
     private List<String> excludes;
     private boolean phantom;
     private boolean jmod;

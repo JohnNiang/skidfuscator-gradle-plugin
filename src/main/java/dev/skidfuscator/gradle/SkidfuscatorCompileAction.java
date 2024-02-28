@@ -77,6 +77,7 @@ public class SkidfuscatorCompileAction implements Action<Task> {
         builderClass.getMethod("jmod", boolean.class).invoke(builder, spec.isJmod());
         builderClass.getMethod("fuckit", boolean.class).invoke(builder, spec.isFuckit());
         builderClass.getMethod("analytics", boolean.class).invoke(builder, spec.isAnalytics());
+        builderClass.getMethod("config", File.class).invoke(builder, spec.getConfig());
         return builderClass.getMethod("build").invoke(builder);
     }
 }
