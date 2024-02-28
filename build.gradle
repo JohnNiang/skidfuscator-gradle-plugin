@@ -5,7 +5,7 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
-group = 'dev.skidfuscator'
+group = 'io.github.johnniang'
 version = '0.5'
 
 gradlePlugin {
